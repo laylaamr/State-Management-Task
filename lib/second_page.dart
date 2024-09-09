@@ -8,9 +8,70 @@ class SecondPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: Column(
         children: [
-SizedBox(height: 60,),
+          const SizedBox(height: 40,),
+Row(children: [
+    Consumer<StateModel>(
+    builder: (context, stateModel, child) {
+    return CircleAvatar(
+    backgroundImage: NetworkImage(stateModel.imageUrl),
+    );
+    },
+    ),
+  SizedBox(width: 30,),
+  Consumer<StateModel>(
+    builder: (context, stateModel, child) {
+      return Text('Hi ${stateModel.name}',style: TextStyle(fontSize: 25),);
+    },
+  ),
+  SizedBox(width: 130,),
+  Icon(Icons.search,size:40,color: Colors.black,),
+  SizedBox(width: 10,),
+  Consumer<StateModel>(
+    builder: (context, stateModel, child) {
+      return Stack(
+        children: <Widget>[
+         IconButton(
+         icon: Icon( Icons.shopping_cart,
+           size: 30,
+           color: Colors.black,), onPressed: () {
+           Navigator.of(context).push(
+               MaterialPageRoute(
+                 builder: (context) => const FinalScreen(),)
+           );
+         },
+          ),
+          Positioned(
+            right: 1,
+            top:1,
+            child: Container(
+           //   padding: EdgeInsets.all(2),
+              width:15,
+              height: 15,
+              decoration: BoxDecoration(
+
+                color: Colors.orange,
+                borderRadius: BorderRadius.circular(12),
+              ),
+
+              child: Text(
+                "${stateModel.counter}",
+                style:const  TextStyle(
+                  color: Colors.white,
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          )
+        ],
+      );
+    },
+  ),
+],),
           Container(
             width: double.infinity,
             height: 400,
@@ -31,7 +92,7 @@ SizedBox(height: 60,),
               );
             },
           ),
-          SizedBox(height: 30,),
+          SizedBox(height: 10,),
           const Text("Quantity",  style: TextStyle(fontSize: 25,fontWeight: FontWeight.w500)),
           Container(
             width: 150,
@@ -71,7 +132,7 @@ child: Row(
 
 ],),
           ),
-          SizedBox(height: 30,),
+          SizedBox(height: 20,),
           ElevatedButton(onPressed: (){
             Navigator.of(context).push(
                 MaterialPageRoute(

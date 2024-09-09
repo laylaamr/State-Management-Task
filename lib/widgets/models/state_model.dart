@@ -4,8 +4,12 @@ class StateModel extends ChangeNotifier {
  late String email;
  late String phoneNumber;
  late String password;
+ late String imageUrl;
  int counter = 0;
  nameNotifier(){
+   notifyListeners();
+ }
+imageUrlNotifier(){
    notifyListeners();
  }
 emailNotifier(){

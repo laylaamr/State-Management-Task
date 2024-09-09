@@ -53,6 +53,17 @@ class SignIn extends StatelessWidget {
                   },
                 );
               },
+            ),       SizedBox(height: 20,),
+            Consumer<StateModel>(
+              builder: (context, stateModel, child) {
+                return Textbox(
+                  hintValue: 'Image Url',
+                  onChange: (value) {
+                    stateModel.imageUrl = value;
+                    stateModel.imageUrlNotifier();
+                  },
+                );
+              },
             ),
             SizedBox(height: 20,),
             Consumer<StateModel>(
